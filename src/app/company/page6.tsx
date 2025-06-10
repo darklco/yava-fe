@@ -1,26 +1,39 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const highlightImages = [
   {
-    src: "/company/h1.png",
-    text: "Cashew nuts are typically purcashed after drying which requires at least a concrete flor to stay clean. To support small farmers, Yava builds concrete drying floors in sunrouding areas.",
+    src: "/images/h1.png",
+    text: (
+      <p className="text-sm text-gray-700 mb-6 leading-relaxed">
+        "Cashew nuts are typically purchased after drying which requires at least a concrete floor to stay clean. To support small farmers, Yava builds concrete drying floors in surrounding areas."
+      </p>
+    ),
   },
   {
-    src: "/company/h2.png",
-    text: "Cashew trees in Ban village were planted over 30 years ago, and yields have declined. New varieties can double production pre tree and produce larger nuts. Yava is providing new seedlings for farmers",
+    src: "/images/h2.png",
+    text: (
+      <p className="text-sm text-gray-700 mb-6 leading-relaxed">
+        "Cashew trees in Ban village were planted over 30 years ago, and yields have declined. New varieties can double production per tree and produce larger nuts. Yava is providing new seedlings for farmers."
+      </p>
+    ),
   },
   {
-    src: "/company/h3.png",
-    text: "Yava buys sugar from lontar palm nectar and helps farmers improve worker safety by providing protective equipment for climbng. It also enhances sugar quality by supplying better cooking tools and measuring instruments.",
+    src: "/images/h3.png",
+    text: (
+      <p className="text-sm text-gray-700 mb-6 leading-relaxed">
+        "Yava buys sugar from lontar palm nectar and helps farmers improve worker safety by providing protective equipment for climbing. It also enhances sugar quality by supplying better cooking tools and measuring instruments."
+      </p>
+    ),
   },
 ];
 
 const Highlight = () => {
   const [index, setIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
@@ -29,61 +42,76 @@ const Highlight = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const nextSlide = () => setIndex((prev) => (prev + 1) % highlightImages.length);
-  const goToSlide = (i: number) => setIndex(i);
+  useEffect(() => {
+    isFirstRender.current = false;
+  }, []);
+
+  // Ganti slide otomatis tiap 5 detik
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % highlightImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const getTransitionDuration = () => 0.5;
 
   return (
-    <section
-      className="bg-[#FFF9F2] py-16 px-4 sm:px-12 lg:px-24 font-sans"
-      id="highlight"
-    >
+    <section className="bg-[#FFFFFF] py-16 px-4 sm:px-12 lg:px-24 font-sans" id="highlight">
       <div className="text-center mx-auto mb-8">
-        <h1 className="text-3xl font-bold leading-tight">
-          <div className="wildwords text-[#4B1A1B]">PROJECT</div>
-          <div className="wildwords bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-            HIGHLIGHT
-          </div>
-        </h1>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="text-4xl 2x1:text-5x1 font-bold leading-tight wildwords text-[#4B1A1B]"
+        >
+          PROJECT
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut", delay: 0.2 }}
+          className="text-4xl 2x1:text-5x1 font-bold leading-tight wildwords inline-block bg-gradient-to-r from-[#FE8301] to-[#f31212] bg-clip-text text-transparent"
+        >
+          HIGHLIGHT
+        </motion.div>
       </div>
 
       <div className="relative max-w-5xl mx-auto w-full flex justify-center">
-        {/* Tombol vertikal (desktop) */}
-        <div className="hidden sm:flex flex-col items-center gap-3 absolute left-0 top-1/2 -translate-y-1/2 z-10">
+        {/* Tombol vertikal (desktop) tidak aktif */}
+        <div className="hidden sm:flex flex-col items-center gap-3 absolute left-0 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
           {highlightImages.map((_, i) => (
-            <button
+            <span
               key={i}
-              onClick={(e) => {
-                e.stopPropagation();
-                goToSlide(i);
-              }}
               className={`transition-all duration-300 ${
                 index === i
-                  ? "w-1.5 h-6 bg-red-600 rounded-full"
-                  : "w-2 h-2 bg-red-300 rounded-full"
+                  ? "w-1.5 h-8 bg-red-600 rounded-full"
+                  : "w-1.5 h-1.5 bg-[#FFF9F2] border-2 border-red-400 rounded-full"
               }`}
             />
           ))}
         </div>
 
-        {/* Konten gambar + teks */}
-        <div
-          className="flex flex-col items-center sm:flex-row sm:items-center gap-6 w-full sm:pl-8 cursor-pointer"
-          onClick={nextSlide}
-        >
+        <div className="flex flex-col items-center sm:flex-row sm:items-center gap-6 w-full sm:pl-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={highlightImages[index].src}
-              initial={isMobile ? { opacity: 0, x: 100 } : { opacity: 0, y: 50 }}
+              initial={
+                index === 0 && isFirstRender.current
+                  ? { opacity: 0, x: 100 }
+                  : isMobile
+                  ? { opacity: 0, x: 100 }
+                  : { opacity: 0, y: 50 }
+              }
               animate={{ opacity: 1, x: 0, y: 0 }}
               exit={isMobile ? { opacity: 0, x: -100 } : { opacity: 0, y: -50 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: getTransitionDuration(), ease: "easeOut" }}
               className="flex flex-col sm:flex-row items-center gap-6 w-full justify-center"
             >
-              {/* Gambar responsive tanpa crop */}
               <div className="mx-auto max-w-[460px] w-full">
                 <Image
                   src={highlightImages[index].src}
-                  alt="Highlight Anakardia"
+                  alt="Highlight"
                   width={460}
                   height={320}
                   className="rounded-xl w-full h-auto object-contain"
@@ -91,26 +119,21 @@ const Highlight = () => {
                 />
               </div>
 
-              {/* Teks */}
               <div className="max-w-md text-[#1A1A1A] text-sm sm:text-base leading-relaxed text-center sm:text-left">
                 {highlightImages[index].text}
               </div>
             </motion.div>
           </AnimatePresence>
 
-          {/* Tombol horizontal (mobile) */}
-          <div className="flex sm:hidden gap-2 mt-4">
+          {/* Tombol horizontal (mobile) tidak aktif */}
+          <div className="flex sm:hidden gap-2 mt-4 pointer-events-none">
             {highlightImages.map((_, i) => (
-              <button
+              <span
                 key={i}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToSlide(i);
-                }}
                 className={`transition-all duration-300 ${
                   index === i
-                    ? "w-6 h-1.5 bg-red-600 rounded-full"
-                    : "w-2 h-2 bg-red-300 rounded-full"
+                    ? "w-8 h-1.5 bg-red-600 rounded-full"
+                    : "w-1.5 h-1.5 bg-[#FFF9F2] border-2 border-red-400 rounded-full"
                 }`}
               />
             ))}
