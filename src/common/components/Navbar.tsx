@@ -4,14 +4,13 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
-
 const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
 
   return (
     <nav
-      className="bg-gradient-to-r bg-orange-500 text-white shadow-md flex items-center justify-between px-6"
-      style={{ width: 'full', height: '85px' }}
+      className="relative z-30 bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-md flex items-center justify-between px-6"
+      style={{ width: '100%', height: '85px' }}
     >
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
@@ -21,37 +20,52 @@ const Navbar = () => {
 
         {/* Menu */}
         <div className="hidden md:flex space-x-8 items-center">
-          <Link href="#" className="hover:underline text-sm md:text-base">
-            Lontar Sugar
+          <Link href="/lontar-sugar" className="hover:underline text-sm md:text-base">
+            Lontar sugar
           </Link>
 
           {/* Dropdown */}
           <div className="relative">
             <button
-              className="flex items-center gap-1 hover:underline text-sm md:text-base"
-              onClick={() => setOpenDropdown(!openDropdown)}
+              className="flex items-center gap-1 hover:underline text-sm md:text-base focus:outline-none"
+              onClick={() => setOpenDropdown((prev) => !prev)}
+              aria-expanded={openDropdown}
             >
               Our Foods <ChevronDown size={16} />
             </button>
             {openDropdown && (
-              <div className="absolute bg-white text-black mt-2 p-2 rounded shadow-lg z-10 w-40">
-                <Link href="#" className="block px-2 py-1 hover:bg-gray-100">Food 1</Link>
-                <Link href="#" className="block px-2 py-1 hover:bg-gray-100">Food 2</Link>
+              <div
+                className="absolute bg-white text-black mt-2 p-2 rounded shadow-lg z-50 w-40"
+                onMouseLeave={() => setOpenDropdown(false)} // Tutup saat kursor keluar
+              >
+                <Link
+                  href="/our-foods"
+                  className="block px-2 py-1 hover:bg-gray-100"
+                  onClick={() => setOpenDropdown(false)}
+                >
+                  Food 1
+                </Link>
+                <Link
+                  href="/our-foods/food-2"
+                  className="block px-2 py-1 hover:bg-gray-100"
+                  onClick={() => setOpenDropdown(false)}
+                >
+                  Food 2
+                </Link>
               </div>
             )}
           </div>
 
-          <Link href="#" className="hover:underline text-sm md:text-base">
+          <Link href="/momoyo" className="hover:underline text-sm md:text-base">
             Ingredients
           </Link>
-          <Link href="/company" className="hover:underline text-sm md:text-base">
+          <Link href="/app/company" className="hover:underline text-sm md:text-base">
             Company
           </Link>
-
-          <Link href="#" className="hover:underline text-sm md:text-base">
+          <Link href="/app/yavakatamereka" className="hover:underline text-sm md:text-base">
             YAVAKataMereka
           </Link>
-          <Link href="#" className="hover:underline text-sm md:text-base">
+          <Link href="/news-event" className="hover:underline text-sm md:text-base">
             News & Event
           </Link>
         </div>
