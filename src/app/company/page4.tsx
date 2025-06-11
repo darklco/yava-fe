@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const highlightImages = [
   {
-    src: "/images/kids1.png",
+    src: "/company/kids1.png",
     text: (
       <p className="text-sm text-gray-700 mb-6 leading-relaxed">
         Three Anakardia students competed in the Kindergarten Coloring Competition.
@@ -13,7 +13,7 @@ const highlightImages = [
     ),
   },
   {
-    src: "/images/kids2.png",
+    src: "/company/kids2.png",
     text: (
       <p className="text-sm text-gray-700 mb-6 leading-relaxed">
         Student and teacher joined a preschool competition organized by the pusat kegiatan Gugus (PKG, Cluster Activity Center).
@@ -21,7 +21,7 @@ const highlightImages = [
     ),
   },
   {
-    src: "/images/kids3.png",
+    src: "/company/kids3.png",
     text: (
       <p className="text-sm text-gray-700 mb-6 leading-relaxed">
         Four students participated in the Extraordinary Creativity competition at Alfa Rima campus.

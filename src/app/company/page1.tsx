@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 const MissionSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [
-    "/images/pg1.png",
-    "/images/pg2.png",
-    "/images/pg3.png",
-    "/images/pg4.png",
-    "/images/pg5.png",
-    "/images/pg6.png",
-    "/images/pg7.png",
+    "/company/pg1.png",
+    "/company/pg2.png",
+    "/company/pg3.png",
+    "/company/pg4.png",
+    "/company/pg5.png",
+    "/company/pg6.png",
+    "/company/pg7.png",
   ];
 
   useEffect(() => {
@@ -110,14 +110,14 @@ const MissionSection = () => {
                 <div className="relative w-[380px] h-[380px] md:w-[440px] md:h-[440px] 2xl:w-[520px] 2xl:h-[520px]">
                   {/* Quote mark */}
                  <motion.img
-                  src="/images/quote2.png"
+                  src="/company/quote2.png"
                   alt="Quote Mark"
-                  width={150}
-                  height={150}
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 120 }}
-                  className="absolute top-[-50px] right-[-30px] w-[150px] h-[150px] transform rotate-12 z-20"
+                  className="absolute top-[-50px] right-[-30px] rotate-12 z-20"
+                  style={{ width: '100px', height: '100px', objectFit: 'contain' }}
+
                 />
 
 

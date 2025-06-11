@@ -12,13 +12,13 @@ const inter = Inter({
 const AnakKardiaKidsSection = () => {
   const [anakKardiaImageIndex, setAnakKardiaImageIndex] = useState(0);
   const anakKardiaImages = [
-    "/images/an1.png",
-    "/images/an2.png",
-    "/images/an3.png",
-    "/images/an4.png",
-    "/images/an5.png",
-    "/images/an6.png",
-    "/images/an7.png",
+    "/company/an1.png",
+    "/company/an2.png",
+    "/company/an3.png",
+    "/company/an4.png",
+    "/company/an5.png",
+    "/company/an6.png",
+    "/company/an7.png",
   ];
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const AnakKardiaKidsSection = () => {
               className="absolute -top-10 -left-10 z-10"
             >
               <Image
-                src="/images/quote.png"
+                src="/company/quote.png"
                 alt="Quote"
                 width={100}
                 height={100}

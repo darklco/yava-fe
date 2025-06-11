@@ -10,12 +10,12 @@ const inter = Inter({
 });
 
 const farmerImages = [
-  "/images/f1.png",
-  "/images/f2.png",
-  "/images/f3.png",
-  "/images/f4.png",
-  "/images/f5.png",
-  "/images/f6.png",
+  "/company/f1.png",
+  "/company/f2.png",
+  "/company/f3.png",
+  "/company/f4.png",
+  "/company/f5.png",
+  "/company/f6.png",
 ];
 
 const FarmerDevelopmentSection = () => {
@@ -129,16 +129,17 @@ const FarmerDevelopmentSection = () => {
                     priority
                   />
                   <motion.div
-                    className="absolute top-[-45px] right-[-30px] w-[150px] h-[150px] z-20"
+                    className="absolute top-[-45px] w-[150px] h-[150px] z-20"
+                    style={{ right: '-87px' }}
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 120 }}
                   >
                     <Image
-                      src="/images/quote2.png"
+                      src="/company/quote2.png"
                       alt="Quote"
-                      width={150}
-                      height={150}
+                      width={100}
+                      height={100}
                       className="rotate-12 drop-shadow-lg"
                     />
                   </motion.div>

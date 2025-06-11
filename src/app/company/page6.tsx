@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const highlightImages = [
   {
-    src: "/images/h1.png",
+    src: "/company/h1.png",
     text: (
       <p className="text-sm text-gray-700 mb-6 leading-relaxed">
         "Cashew nuts are typically purchased after drying which requires at least a concrete floor to stay clean. To support small farmers, Yava builds concrete drying floors in surrounding areas."
@@ -13,7 +13,7 @@ const highlightImages = [
     ),
   },
   {
-    src: "/images/h2.png",
+    src: "/company/h2.png",
     text: (
       <p className="text-sm text-gray-700 mb-6 leading-relaxed">
         "Cashew trees in Ban village were planted over 30 years ago, and yields have declined. New varieties can double production per tree and produce larger nuts. Yava is providing new seedlings for farmers."
@@ -21,7 +21,7 @@ const highlightImages = [
     ),
   },
   {
-    src: "/images/h3.png",
+    src: "/company/h3.png",
     text: (
       <p className="text-sm text-gray-700 mb-6 leading-relaxed">
         "Yava buys sugar from lontar palm nectar and helps farmers improve worker safety by providing protective equipment for climbing. It also enhances sugar quality by supplying better cooking tools and measuring instruments."
